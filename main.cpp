@@ -22,16 +22,17 @@ size_t read_request_data(char *ptr, size_t size, size_t nmemb, void *userdata)
 	return result;
 }
 
-void gen_random(std::string &s, const int len) {
+void gen_random(std::string &s, const int len) 
+{
 	static const char alphanum[] =
 		"0123456789"
 		//"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 		"abcdef";//ghijklmnopqrstuvwxyz";
 
-	for (int i = 0; i < len; ++i) {
+	for (int i = 0; i < len; ++i) 
+	{
 		s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
 	}
-
 	s[len] = 0;
 }
 
@@ -54,14 +55,13 @@ int main()
 		headers = curl_slist_append(headers, "Content-Type: audio/x-wav");
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
-		curl_easy_setopt(curl, CURLOPT_USERAGENT, "Dalvik/1.2.0 (Linux; U; Android 2.2.2; LG-P990 Build/FRG83G");
+		//curl_easy_setopt(curl, CURLOPT_USERAGENT, "Dalvik/1.2.0 (Linux; U; Android 2.2.2; LG-P990 Build/FRG83G");
 		std::string uiid(32, 0);
 		gen_random(uiid, 32);
-		std::string key("your_key");
+		std::string key("ff7c1de8-e6f9-42dd-aa36-bf9208a6973c");
 
-		std::string req("asr.yandex.net/asr_xml?key=");
-		req += key + "&uuid=" + uiid + "&topic=queries&lang=ru-RU";
-		std::cout << req.c_str();
+		std::string req("asr.yandex.net/asr_xml?key=" + key + "&uuid=" + uiid + "&topic=queries&lang=ru-RU");
+		std::cout << req.c_str() << std::endl;
 
 		curl_easy_setopt(curl, CURLOPT_URL, req.c_str());
 
