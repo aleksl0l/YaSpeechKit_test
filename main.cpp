@@ -58,7 +58,7 @@ int main()
 		//curl_easy_setopt(curl, CURLOPT_USERAGENT, "Dalvik/1.2.0 (Linux; U; Android 2.2.2; LG-P990 Build/FRG83G");
 		std::string uiid(32, 0);
 		gen_random(uiid, 32);
-		std::string key("ff7c1de8-e6f9-42dd-aa36-bf9208a6973c");
+		std::string key("your_key");
 
 		std::string req("asr.yandex.net/asr_xml?key=" + key + "&uuid=" + uiid + "&topic=queries&lang=ru-RU");
 		std::cout << req.c_str() << std::endl;
